@@ -6,7 +6,7 @@
 /*   By: rbouissa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:54:47 by met-tahe          #+#    #+#             */
-/*   Updated: 2023/05/20 20:03:53 by rbouissa         ###   ########.fr       */
+/*   Updated: 2023/05/21 19:18:38 by rbouissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,20 @@ typedef struct s_norm
 	int				token;
 	int				token2;
 }					t_norm;
+typedef struct s_norm2
+{
+    char	*new_str;
+	char	*var;
+	char	*valeur;
+	char	*dollar;
+	int		quotes;
+	int		i;
+	int		k;
+	int		j;
+	int		e;
+	int		h;
+    
+}   t_norm2;
 typedef struct s_nor_sp
 {
     int		i;

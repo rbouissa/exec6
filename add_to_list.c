@@ -31,18 +31,14 @@ int	check_eroor(char *str)
 	int	i;
 
 	i = 0;
-   // printf("%c\n",str[0]);
 	while (str[i])
-	{
-        
+	{  
 		if ((str[0] == ' ' || str[0] == '\t'))
 		{
-           
 			while ((str[i] == ' ' || str[i] == '\t') && str[i])
 				i++;
 			if ((str[i] == '|' || str[i] == '>' || str[i] == '<') )
 			{
-                printf("kkk\n");
 				ft_write("syntax error near unexpected token `|'");
 				return (0);
 			}
@@ -74,16 +70,13 @@ int	check_eroor(char *str)
 				return (0);
 			}
 		}
-		
 		else if ((str[i] == '>' || str[i] == '<') && !str[i + 1])
 		{
 			ft_write("syntax error near unexpected token `newline'");
 			return (0);
 		}
 		else
-        {
 			i++;
-        }
 	}
 	return (1);
 }

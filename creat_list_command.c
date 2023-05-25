@@ -39,7 +39,6 @@ int	file_numb(t_list *comm)
 				close(token);
 			if (command->token == 2)
 			{
-				// printf("00222---%s\n",command->next->next->data);
 				token = open(command->next->data, O_CREAT | O_WRONLY, 0777);
 				if (token == -1)
 				{
@@ -229,10 +228,12 @@ t_cmd	*split_to_commands(t_list *comm)
 	//for multiple pipe
 	else
 	{
+       
 		while (command != NULL)
 		{
 			if (command->token == 5)
 			{
+                if(command->next!=NULL)
 				command = command->next;
 				if (command->token == 2 || command->token == 9)
 					token = file_numb(comm);
@@ -261,6 +262,7 @@ t_cmd	*split_to_commands(t_list *comm)
 				}
 				else
 				{
+                     
 					herdoc = malloc(sizeof(char *));
 					herdoc[0] = 0;
 					ft_lstadd_back_new(&list, ft_lstnew_new(ft_split(cmd, 19),

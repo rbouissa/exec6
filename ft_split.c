@@ -6,7 +6,7 @@
 /*   By: rbouissa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 18:10:01 by rbouissa          #+#    #+#             */
-/*   Updated: 2023/04/07 05:24:23 by rbouissa         ###   ########.fr       */
+/*   Updated: 2023/05/21 20:17:19 by rbouissa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,7 @@ char	**ft_split(char *s, char c)
 	if (!split)
 		return (0);
 	if (s == NULL)
-	{
 		split[0] = 0;
-	}
 	else
 	{
 		while (s[i])

@@ -5,6 +5,7 @@ int	size_of_quotes(char *c)
 {
     int i;
     int j;
+    
     i= 0 ;
     j = 0;
     while (c[i] != '\0')

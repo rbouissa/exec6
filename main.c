@@ -30,7 +30,7 @@ void	print_cmd(t_cmd *cmd)
 	while (tmp)
 	{
 		i = 0;
-		if(tmp->cmd == NULL)
+		if (tmp->cmd == NULL)
 			printf("cmd = NULL\n");
 		while (tmp->cmd && tmp->cmd[i])
 		{
@@ -73,9 +73,9 @@ void	init_my_global(void)
 	my_global->id = NULL;
 	//my_global->id[0] = 0;
 }
-void free_cmd(t_cmd *cmd)
+void	free_cmd(t_cmd *cmd)
 {
-	t_cmd *tmp;
+	t_cmd	*tmp;
 
 	tmp = cmd;
 	while (tmp)
@@ -101,7 +101,7 @@ int	main(int argc, char **argv, char **env)
 	i = 0;
 	mini = NULL;
 	tmp = NULL;
-	str=NULL;
+	str = NULL;
 	(void)argc;
 	(void)argv;
 	str_2 = NULL;
@@ -112,7 +112,6 @@ int	main(int argc, char **argv, char **env)
 	my_global->status = 0;
 	signal(SIGINT, ctrlc_handler);
 	signal(SIGQUIT, ctrld_handler);
-    
 	while (1)
 	{
 		tcgetattr(0, &term);
@@ -120,56 +119,52 @@ int	main(int argc, char **argv, char **env)
 		term.c_lflag &= ~ISIG;
 		term.c_lflag &= ~ECHOCTL;
 		tcsetattr(0, TCSANOW, &term);
-        
 		str = readline("minishell>");
 		tcsetattr(0, TCSANOW, &term2);
 		if (!str)
 		{
-			(write(1, "exit\n", 5),free(str));
+			(write(1, "exit\n", 5), free(str));
 			exit(my_global->status);
 		}
+        
 		str_2 = new_expand(str, mini);
-		if (str_2!=NULL &&check_eroor(str_2) && alot_of_spliter(str_2))
+       // printf("---==>str_2==%s\n",str_2);
+		if (str_2 != NULL && check_eroor(str_2) && alot_of_spliter(str_2))
 		{
 			//add expanding variables
 			if (str_2[0])
 			{
-                
 				cmd = ft_split_them(str_2);
-                tmp = cmd;
-                //(void)commands;
-                 while(tmp)
-                 {
-                    printf("00---%s\n",tmp->data);
-                    tmp=tmp->next;
-                 }
-                
-				//commands = split_to_commands(cmd); 
+              
+				tmp = cmd;
+				//(void)commands;
+				 while(tmp)
+				 {
+				    printf("00---%s\n",tmp->data);
+				    tmp=tmp->next;
+				 }
+				
+				commands = split_to_commands(cmd);
 				if (commands == NULL)
 					continue ;
-					//system("leaks minishell");
+				//system("leaks minishell");
 				//tmp = commands;
 				//print_cmd(commands);
 				//  if (commands->outfile != -1 && commands->outfile != -1)
 				// 	exec_cmd(mini, commands, env);
 				//free_cmd(commands);
-                
-                //ft_free_cmd2(cmmands);
+				//ft_free_cmd2(cmmands);
 			}
 		}
 		add_history(str);
 		free(str);
-        str=NULL;
-        if(str_2 != NULL)
-        {
-            free(str_2);
-            ft_free_cmd2(commands);
-            commands=NULL;
-            str_2=NULL;
-        }
-       
+		str = NULL;
+		if (str_2 != NULL)
+		{
+			free(str_2);
+			ft_free_cmd2(commands);
+			commands = NULL;
+			str_2 = NULL;
+		}
 	}
-	
 }
-
-
